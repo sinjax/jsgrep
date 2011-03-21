@@ -3,7 +3,7 @@
 This is a tool for performing jQuery CSS selection from the command line. It outputs elements or attributes to the command line letting you use the rest of the command line tools to do sexy things with HTML content. I wrote this mainly to solve a small problem I had but also as an excuse to use node.js
 
 
-	Usage: src/jsgrep.js [options]
+	Usage: node src/jsgrep.js [options]
 	Show this help message
 		--help
 	Also print subelements (with tags unless --no-tags is set)
@@ -19,3 +19,15 @@ This is a tool for performing jQuery CSS selection from the command line. It out
 
 # Examples
 
+## Command:
+
+	curl -s sinjax.net | node src/jsgrep.js -s img -a src -nt | sort | uniq
+
+## Outputs:
+
+	/graphics/cats.png
+	/graphics/comments.png
+	/graphics/date.png
+	/graphics/globe.png
+	/graphics/link.png
+	/style/face
