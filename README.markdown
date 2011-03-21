@@ -1,4 +1,4 @@
-# Introduction
+## Introduction
 
 This is a tool for performing jQuery CSS selection from the command line. It outputs elements or attributes to the command line letting you use the rest of the command line tools to do sexy things with HTML content. I wrote this mainly to solve a small problem I had but also as an excuse to use node.js
 
@@ -17,13 +17,13 @@ This is a tool for performing jQuery CSS selection from the command line. It out
 	HTML URL or Filename
 		-i, --input <value>
 
-# Examples
+## Examples
 
-## Command:
+### Command:
 
 	curl -s sinjax.net | node src/jsgrep.js -s img -a src -nt | sort | uniq
 
-## Outputs:
+### Outputs:
 
 	/graphics/cats.png
 	/graphics/comments.png
