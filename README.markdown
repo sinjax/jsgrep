@@ -28,11 +28,11 @@ or you can clone this and have a go yourself.
 
 Get all the images from a url and use sort and uniq to get a unique list
 
-### Command:
+#### Command:
 
 	curl -s sinjax.net | jsgrep -s img -a src -nt | sort | uniq
 
-### Outputs:
+#### Outputs:
 
 	/graphics/cats.png
 	/graphics/comments.png
@@ -44,10 +44,10 @@ Get all the images from a url and use sort and uniq to get a unique list
 
 Get all the top level section names of a wikipedia article
 
-### Command:
+#### Command:
 	curl -s http://en.wikipedia.org/wiki/Markdown | jsgrep -s ".toclevel-1>a>.toctext" -nt -r  | sed 's/ /_/g'
 
-### Output:
+#### Output:
 	Syntax_examples
 	Markdown_users
 	See_also
