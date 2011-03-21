@@ -233,7 +233,7 @@ exports.domToHtml = function(dom,nrecurse,tags) {
 		}
 	} else {
 		// single node
-		ret = exports.generateHtmlRecursive(dom,false,nrecurse,tags);
+		ret = exports.generateHtmlRecursive(dom,false,nrecurse,tags).trim();
 	}
 	
 	return ret;
