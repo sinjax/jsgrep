@@ -1,16 +1,18 @@
 {
-  "name": "jsgrep",
-  "description": "JQuery CSS selectors to grep HTML documents",
-  "version": "0.0.0",
-  "repository": {
-    "url": ""
-  },
-  "author": "Sina Samangooei <sinjax@gmail.com>",
-  "main": "src/jsgrep.js",
-  "directories": {
-    "lib": "."
-  },
-  "engines": {
-    "node": "*"
-  }
+	"name": "jsgrep",
+	"description": "JQuery CSS selectors to grep HTML documents",
+	"version": "0.1.0",
+	"author": "Sina Samangooei <sinjax@gmail.com>",
+	"main": "jsgrep",
+	"directories": {
+	"lib": "./src",
+	"bin": "./bin"
+	},
+	"engines": {
+		"node": "*"
+	},
+	"repository" :
+	{ "type" : "git",
+		"url" : "git://github.com/sinjax/jsgrep.git"
+	}
 }

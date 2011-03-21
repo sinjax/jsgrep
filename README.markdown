@@ -17,6 +17,13 @@ This is a tool for performing jQuery CSS selection from the command line. It out
 	HTML URL or Filename
 		-i, --input <value>
 
+
+## Installation
+
+You can use npm to install jsgrep like this:
+	npm install jsgrep
+or you can clone this and have a go yourself.
+
 ## Examples
 
 Get all the images from a url and use sort and uniq to get a unique list
