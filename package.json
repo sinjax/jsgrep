@@ -5,11 +5,15 @@
 	"author": "Sina Samangooei <sinjax@gmail.com>",
 	"main": "jsgrep",
 	"directories": {
-	"lib": "./src",
-	"bin": "./bin"
+		"lib": "./src",
+		"bin": "./bin"
 	},
 	"engines": {
 		"node": "*"
+	},
+	"dependencies": {
+		"jsdom": ">=0.2.0",
+		"opts" : ">=1.2.1"
 	},
 	"repository" :
 	{ "type" : "git",
