@@ -5,17 +5,17 @@ This is a tool for performing jQuery CSS selection from the command line. It out
 
 	Usage: src/jsgrep.js [options]
 	Show this help message
-	--help
+		--help
 	Also print subelements (with tags unless --no-tags is set)
-	-r, --recursive
+		-r, --recursive
 	Only print text nodes, do not print tags
-	-nt, --no-tags
+		-nt, --no-tags
 	Extract and print attribute per element matching (with source tags unless --no-tags is set)
-	-a, --attribute <value>
+		-a, --attribute <value>
 	The CSS selector to use 
-	-s, --selector <value>
+		-s, --selector <value>
 	HTML URL or Filename
-	-i, --input <value>
+		-i, --input <value>
 
 # Examples
 
