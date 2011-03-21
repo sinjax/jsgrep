@@ -32,8 +32,8 @@ var options = [
 
 // Grab the options
 opts.parse(options, true);
-var input  = opts.get('input') || false // default port value
-	, elementSelector = opts.get('selector') || 'p'  // default debug value
+var input  = opts.get('input') || false 
+	, elementSelector = opts.get('selector') || 'p' 
 	, attributeName  = opts.get('attribute') || false
 	, noTags  = opts.get('no-tags')
 	, recursive  = opts.get('recursive') ? -1 : 1
