@@ -26,7 +26,7 @@ or you can clone this and have a go yourself.
 
 ## Examples
 
-Get all the images from a url and use sort and uniq to get a unique list
+###Get all the images from a url and use sort and uniq to get a unique list
 
 #### Command:
 
@@ -42,7 +42,7 @@ Get all the images from a url and use sort and uniq to get a unique list
 	/style/face
 
 
-Get all the top level section names of a wikipedia article
+###Get all the top level section names of a wikipedia article
 
 #### Command:
 	curl -s http://en.wikipedia.org/wiki/Markdown | jsgrep -s ".toclevel-1>a>.toctext" -nt -r  | sed 's/ /_/g'
