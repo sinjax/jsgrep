@@ -30,7 +30,7 @@ Get all the images from a url and use sort and uniq to get a unique list
 
 ### Command:
 
-	curl -s sinjax.net | node src/jsgrep.js -s img -a src -nt | sort | uniq
+	curl -s sinjax.net | jsgrep -s img -a src -nt | sort | uniq
 
 ### Outputs:
 
@@ -45,7 +45,7 @@ Get all the images from a url and use sort and uniq to get a unique list
 Get all the top level section names of a wikipedia article
 
 ### Command:
-	curl -s http://en.wikipedia.org/wiki/Markdown | node src/jsgrep.js -s ".toclevel-1>a>.toctext" -nt -r  | sed 's/ /_/g'
+	curl -s http://en.wikipedia.org/wiki/Markdown | jsgrep -s ".toclevel-1>a>.toctext" -nt -r  | sed 's/ /_/g'
 
 ### Output:
 	Syntax_examples
