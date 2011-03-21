@@ -1,0 +1,16 @@
+{
+  "name": "jsgrep",
+  "description": "JQuery CSS selectors to grep HTML documents",
+  "version": "0.0.0",
+  "repository": {
+    "url": ""
+  },
+  "author": "Sina Samangooei <sinjax@gmail.com>",
+  "main": "src/jsgrep.js",
+  "directories": {
+    "lib": "."
+  },
+  "engines": {
+    "node": "*"
+  }
+}
