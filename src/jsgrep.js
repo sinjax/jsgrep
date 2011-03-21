@@ -7,7 +7,7 @@ var stdout = process.stdout;
 var options = [
 	{ short : 'i'
 	, long : 'input'
-	, description : 'HTML URL or Filename'
+	, description : 'HTML URL or Filename or raw HTML'
 	, value : true
 	},
 	{ short : 's'
