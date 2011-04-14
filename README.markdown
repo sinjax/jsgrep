@@ -34,13 +34,6 @@ or you can clone this and have a go yourself.
 #### Output:
 	46° 4' 10.61" N, 11° 9' 23.28" E
 
-#### Output:
-	Syntax_examples
-	Markdown_users
-	See_also
-	References
-	External_links
-
 ###Get all the images from a url and use sort and uniq to get a unique list
 
 #### Command:
