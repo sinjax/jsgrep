@@ -1,6 +1,5 @@
 var opts = require('opts')
-var jsdom = require('jsdom').jsdom
-var domtohtml = require("./domtohtml")
+var $ = require('jquery');
 var stdout = process.stdout;
 
 // Setup the command line arguments
@@ -36,37 +35,27 @@ var input  = opts.get('input') || false
 	, elementSelector = opts.get('selector') || 'p' 
 	, attributeName  = opts.get('attribute') || false
 	, noTags  = opts.get('no-tags')
-	, recursive  = opts.get('recursive') ? -1 : 1
+	, recursive  = opts.get('recursive') ? true : false
 function jsGrep () {
-	jsdom.env(input, ['jquery.js'], {
-		features:{
-			FetchExternalResources   : false, 
-			ProcessExternalResources : false,
-			MutationEvents           : false,
-			QuerySelector            : false
+	var selected = $(input).find(elementSelector);
+	if (!recursive){
+		selected = selected.children().remove().end()
+	}
+	selected.each(function (index,value) {
+		var tidyString = "";
+		if(attributeName)
+			tidyString = $(value).attr(attributeName)
+		else
+			tidyString = $(value).text().replace(/^\s*/, '').replace(/\s*$/, '').replace(/\s+/g," ");
+		if(!noTags){
+			var tagName = $(value)[0].nodeName.toLowerCase();
+			if(attributeName)
+				tidyString = "<" + tagName + "> ... </" + tagName + ">: " + tidyString;
+			else
+				tidyString = "<" + tagName + ">" + tidyString + "</" + tagName + ">";
 		}
-	},
-	function(errors, window) {
-		if(window != undefined && "$" in window)
-		{
-			window.$(elementSelector).each(function () {
-				if(!attributeName) {
-					var wang = ""
-					wang = domtohtml.domToHtml(this,recursive,!noTags)
-					stdout.write(wang + "\n");
-				}
-				else{
-					if(!noTags){
-						var elm = domtohtml.stringifyElement(this)
-						stdout.write(elm.start + " ... " + elm.end + ": ")
-					}
-					
-					stdout.write(window.$(this).attr(attributeName) + "\n")
-				}
-
-			})
-		}
-	});
+		console.log(tidyString)
+	})
 }
 
 if(!input){
