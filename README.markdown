@@ -26,6 +26,14 @@ or you can clone this and have a go yourself.
 
 ## Examples
 
+###Get the geo location of a wiki-commons image (if it has one)
+
+#### Command:
+	curl -s http://it.wikipedia.org/wiki/File:Trento-panorama_Povo.jpg | jsgrep -s "a[href*=geo]" -nt
+
+#### Output:
+	46° 4' 10.61" N, 11° 9' 23.28" E
+
 ###Get all the images from a url and use sort and uniq to get a unique list
 
 #### Command:

@@ -132,13 +132,12 @@ exports.HTMLDecode = function decode(s) {
 };
 
 function specialCharToEntity(s) {
-  var entity = specialCharEntities[s];
-  return entity ? entity : s;
+	var entity = specialCharEntities[s];
+	return entity ? entity : s;
 }
 
 exports.HTMLEncode = function encode(s) {
-  if (s) {
-    s = s.replace(specialCharRegExp, specialCharToEntity);
-  }
-  return s || '';
+	if (!s) return '';
+	if (!s.replace) return s;
+	return s.replace(specialCharRegExp, specialCharToEntity);
 };

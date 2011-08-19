@@ -54,54 +54,49 @@ exports.stringifyElement = function stringifyElement(element) {
 				end:''
 		}, attributes = [], i,
 	attribute = null;
-	// process.stdout.write(ret + "\n");
-
-		//sys.puts('Checking Attributes: ' + element._attributes.length);
-		//sys.puts(sys.inspect(element));
-		if (element.attributes.length) {
-				ret.start += " ";
-				for (i = 0; i<element.attributes.length; i++) {
-						attribute = element.attributes.item(i);
-						attributes.push(attribute.name + '="' + 
-														HTMLEncode(attribute.nodeValue) + '"');
-				}
-				//sys.puts('attributes: ' + sys.inspect(attributes));
-		}
-		ret.start += attributes.join(" ");
-		if (element.style) {
-				var styleAttrs = [];
-				for (var i in element.style) {
-						if (!styleIgnore[i]) {
-								var use = true;
-								//sys.puts('Style: ' + i + ' :: ' + element.style[i] );
-								if (i === 'position' && element.style[i] === 'static') {
-										use = false;
-								}
-								if (element.style[i] === '') {
-										use = false;
-								}
-								if (use) {
-										styleAttrs.push(i.replace(expr.upperCaseChars, uncanon) + ': ' + 
-																		HTMLEncode(element.style[i]));
-								}
-						}
-				}
-				if (styleAttrs.length) {
-						ret.start += ' style="' + styleAttrs.join('; ') + '"';
-				}
-		}
-
-		if (singleTags[tagName]) {
-			if (isXHTML) {
-					ret.start += "/";
+	// process.stdout.write(sys.inspect(element));
+	if (element.attributes.length) {
+			ret.start += " ";
+			for (i = 0; i<element.attributes.length; i++) {
+					attribute = element.attributes.item(i);
+					attributes.push(attribute.name + '="' + HTMLEncode(attribute.nodeValue) + '"');
 			}
-			ret.start += ">";
-			ret.end = '';
-		} else {
-			ret.start += ">";
-			ret.end = "</" + tagName + ">";
+			// process.stdout.write('attributes: ' + sys.inspect(attributes));
+	}
+	ret.start += attributes.join(" ");
+	if (element.style) {
+			var styleAttrs = [];
+			for (var i in element.style) {
+					if (!styleIgnore[i]) {
+							var use = true;
+							//sys.puts('Style: ' + i + ' :: ' + element.style[i] );
+							if (i === 'position' && element.style[i] === 'static') {
+									use = false;
+							}
+							if (element.style[i] === '') {
+									use = false;
+							}
+							if (use) {
+									// styleAttrs.push(i.replace(expr.upperCaseChars, uncanon) + ': ' + HTMLEncode(element.style[i]));
+							}
+					}
+			}
+			if (styleAttrs.length) {
+					ret.start += ' style="' + styleAttrs.join('; ') + '"';
+			}
+	}
+
+	if (singleTags[tagName]) {
+		if (isXHTML) {
+				ret.start += "/";
 		}
-		return ret;
+		ret.start += ">";
+		ret.end = '';
+	} else {
+		ret.start += ">";
+		ret.end = "</" + tagName + ">";
+	}
+	return ret;
 };
 
 exports.formatHTML = function formatHTML(html) {
@@ -110,28 +105,28 @@ exports.formatHTML = function formatHTML(html) {
 
 		html = html.replace(expr.breakBetweenTags, '$1\r\n');
 		html.split('\r\n').forEach(function(node, index) {
-				var indent = 0, padding = '', i;
+			var indent = 0, padding = '', i;
 
-				if (node.match(expr.endsWithEndTag)) {
+			if (node.match(expr.endsWithEndTag)) {
+				indent = 0;
+			} else if (node.match(expr.startsWithEndTag)) {
+					if (pad != 0) {
+							pad -= 1;
+					}
+			} else if (node.match(expr.startsWithStartTag)) {
+					if (!expr.singleTag.exec(node)) {
+							indent = 1;
+					}
+			} else {
 					indent = 0;
-				} else if (node.match(expr.startsWithEndTag)) {
-						if (pad != 0) {
-								pad -= 1;
-						}
-				} else if (node.match(expr.startsWithStartTag)) {
-						if (!expr.singleTag.exec(node)) {
-								indent = 1;
-						}
-				} else {
-						indent = 0;
-				}
+			}
 
-				for (i = 0; i < pad; i++) {
-						padding += '	';
-				}
+			for (i = 0; i < pad; i++) {
+					padding += '	';
+			}
 
-				formatted += padding + node + '\r\n';
-				pad += indent;
+			formatted += padding + node + '\r\n';
+			pad += indent;
 		});
 
 		return formatted;
