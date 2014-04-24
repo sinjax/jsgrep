@@ -27,6 +27,10 @@ var options = [
 	, long : 'recursive'
 	, description : 'Also print subelements (with tags unless --no-tags is set)'
 	},
+	{ short : 'ht'
+	, long : 'html'
+	, description : 'force print as html'
+	},
 ];
 
 // Grab the options
@@ -36,6 +40,7 @@ var input  = opts.get('input') || false
 	, attributeName  = opts.get('attribute') || false
 	, noTags  = opts.get('no-tags')
 	, recursive  = opts.get('recursive') ? true : false
+	, html = opts.get('html') ? true : false
 function jsGrep () {
 	var selected = $(input).find(elementSelector);
 	if (!recursive){
@@ -43,17 +48,22 @@ function jsGrep () {
 	}
 	selected.each(function (index,value) {
 		var tidyString = "";
-		if(attributeName)
-			tidyString = $(value).attr(attributeName)
-		else
-			tidyString = $(value).text().replace(/^\s*/, '').replace(/\s*$/, '').replace(/\s+/g," ");
-		if(!noTags){
-			var tagName = $(value)[0].nodeName.toLowerCase();
+		if(html){
+			tidyString = $("<div>").append($(value)).html()
+		} else {
 			if(attributeName)
-				tidyString = "<" + tagName + "> ... </" + tagName + ">: " + tidyString;
+				tidyString = $(value).attr(attributeName)
 			else
-				tidyString = "<" + tagName + ">" + tidyString + "</" + tagName + ">";
+				tidyString = $(value).text().replace(/^\s*/, '').replace(/\s*$/, '').replace(/\s+/g," ");
+			if(!noTags){
+				var tagName = $(value)[0].nodeName.toLowerCase();
+				if(attributeName)
+					tidyString = "<" + tagName + "> ... </" + tagName + ">: " + tidyString;
+				else
+					tidyString = "<" + tagName + ">" + tidyString + "</" + tagName + ">";
+			}
 		}
+		
 		console.log(tidyString)
 	})
 }

@@ -1,7 +1,7 @@
 {
 	"name": "jsgrep",
 	"description": "JQuery CSS selectors to grep HTML documents",
-	"version": "0.3.0",
+	"version": "1.1.0",
 	"author": "Sina Samangooei <sinjax@gmail.com>",
 	"main": "jsgrep",
 	"directories": {
